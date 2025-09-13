@@ -85,19 +85,10 @@ Filesystem      Size  Used Avail Use% Mounted on
 
 1. **Permission Problems**  
    - The script did not run at first because it wasn’t marked as executable. Running `chmod +x` fixed it.  
-
-2. **Command Paths in Cron**  
-   - Cron has a limited environment, so full paths like `/usr/bin/top` had to be used instead of just `top`.  
-
-3. **Log File Overwriting**  
-   - Using `>` inside the script replaced the whole log file. Changing it to `>>` made the script append new entries instead.  
-
-4. **Cron Job Not Running**  
+ 
+2. **Cron Job Not Running**  
    - In some cases, the cron service was not active. It had to be started with:  
      ```bash
      sudo systemctl enable cron
      sudo systemctl start cron
      ```  
-
-5. **Missing Timestamps**  
-   - At first, log entries looked the same. Adding `$(date)` helped show when each entry was created.  
